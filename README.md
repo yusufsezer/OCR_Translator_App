@@ -1,0 +1,2 @@
+# OCR_Translator_App
+This app is designed to translate text contained in images into different languages. The app could be used in foreign language classrooms where students find themselves having to translate many words and phrases in reading assignments. This app could save time by overlaying translations onto images of the assignment, allowing students to translate unknown words or phrases seamlessly. A mobile version could be used to translate street signs, flyers and documents when traveling abroad. Utilizes PyQt5, OpenCV, and Google's Vision (OCR) and Translate APIs.
