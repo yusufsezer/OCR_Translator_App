@@ -2,6 +2,7 @@
 from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QHBoxLayout, QLabel, QFileDialog, QFrame
 from PyQt5.QtGui import QPixmap, QImage
 from image_capture import ImageCapture
+from image_frame import ImageFrame
 
 class TranslatorGUI (QWidget):
 
@@ -43,8 +44,9 @@ class TranslatorGUI (QWidget):
         # self.imageLabel = QLabel()
         # self.imageLabel.setPixmap(self.imageDisplay.scaledToHeight(self.height()))
 
-        self.imageFrame = QFrame()
-        self.imageFrame.setStyleSheet('border-image: url("default.jpg")')
+        self.image = QImage()
+        self.imageFrame = ImageFrame()
+        self._load_image("default.jpg")
         # self.frameBtn = QPushButton(self.imageFrame)
         # self.frameBtn.setText("EXAMPLE")
         # self.frameBtn.setStyleSheet('background-color: blue')
@@ -52,9 +54,6 @@ class TranslatorGUI (QWidget):
 
         # Add appropriate widgets to right vertical layout
         self.rightVLayout.addWidget(self.imageFrame)
-
-
-
 
         # setup and show window
         self.setLayout(self.hLayout)
@@ -80,5 +79,10 @@ class TranslatorGUI (QWidget):
         pass
 
     def _load_image(self, fileName):
+        self.image.load(fileName)
+        imgWidth = self.image.width()
+        imgAspectRatio = self.image.width() / self.image.height()
         self.imageFrame.setStyleSheet('border-image: url("%s")' % fileName)
+        self.imageFrame.setAspectRatio(imgAspectRatio)
+        self.imageFrame.setWidth(imgWidth)
         pass

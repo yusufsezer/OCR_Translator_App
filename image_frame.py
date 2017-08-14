@@ -1,0 +1,25 @@
+# Inherits from QFrame
+# Reimplements sizeHint() so that ImageFrame instances default to half the width and half the height of their parent
+# Reimplements heightForWidth() so that ImageFrame instances maintain the same aspect ratio of the image they display
+
+from PyQt5.QtWidgets import QFrame
+from PyQt5.QtCore import QSize
+
+class ImageFrame(QFrame):
+
+    def __init__(self, aspectRatio = .66, width = 600):
+        super().__init__()
+        self.aspectRatio = aspectRatio
+        self.width = width
+
+    def sizeHint(self):
+        return QSize(self.width, self.heightForWidth(self.width))
+
+    def heightForWidth(self, width):
+        return width * self.aspectRatio
+
+    def setAspectRatio(self, aspectRatio):
+        self.aspectRatio = aspectRatio
+
+    def setWidth(self, width):
+        self.width = width
