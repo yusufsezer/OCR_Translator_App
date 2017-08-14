@@ -1,6 +1,6 @@
 # GUI for OCR Text Translator App
-from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QHBoxLayout, QLabel, QFileDialog
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QHBoxLayout, QLabel, QFileDialog, QFrame
+from PyQt5.QtGui import QPixmap, QImage
 from image_capture import ImageCapture
 
 class TranslatorGUI (QWidget):
@@ -8,7 +8,7 @@ class TranslatorGUI (QWidget):
     def __init__(self):
         super().__init__()
         self.init_ui()
-        self.imageCaptureDelegate = ImageCapture()
+        self.imageCaptureDelegate = ImageCapture() # Webcam Image Capture Delegate
 
     def init_ui(self):
 
@@ -39,12 +39,25 @@ class TranslatorGUI (QWidget):
         self.leftVLayout.addWidget(self.translateImgBtn)
 
         # Create label and fill with default image
-        self.imageDisplay = QPixmap("default.jpg")
-        self.imageLabel = QLabel()
-        self.imageLabel.setPixmap(self.imageDisplay.scaledToHeight(self.height()))
+        # self.imageDisplay = QPixmap("default.jpg")
+        # self.imageLabel = QLabel()
+        # self.imageLabel.setPixmap(self.imageDisplay.scaledToHeight(self.height()))
+
+        self.img = QImage()
+        self.img.load('default.jpg')
+        print(self.img.size())
+        self.imageFrame = QFrame()
+        self.imageFrame.setStyleSheet('border-image: url("default.jpg")')
+        # self.frameBtn = QPushButton(self.imageFrame)
+        # self.frameBtn.setText("EXAMPLE")
+        # self.frameBtn.setStyleSheet('background-color: blue')
+        # self.frameBtn.setGeometry(self.imageFrame.size().width()/2, self.imageFrame.height()/2, 100, 200)
 
         # Add appropriate widgets to right vertical layout
-        self.rightVLayout.addWidget(self.imageLabel)
+        self.rightVLayout.addWidget(self.imageFrame)
+
+
+
 
         # setup and show window
         self.setLayout(self.hLayout)
@@ -54,6 +67,8 @@ class TranslatorGUI (QWidget):
     def take_picture(self):
         imageFileName = self.imageCaptureDelegate.capture_image()
         self._load_image(imageFileName)
+        # self.frameBtn.setGeometry(self.imageFrame.size().width()/2-50, self.imageFrame.height()/2-100, 100, 200)
+
         pass
 
     def select_existing_image(self):
