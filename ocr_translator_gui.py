@@ -43,9 +43,6 @@ class TranslatorGUI (QWidget):
         # self.imageLabel = QLabel()
         # self.imageLabel.setPixmap(self.imageDisplay.scaledToHeight(self.height()))
 
-        self.img = QImage()
-        self.img.load('default.jpg')
-        print(self.img.size())
         self.imageFrame = QFrame()
         self.imageFrame.setStyleSheet('border-image: url("default.jpg")')
         # self.frameBtn = QPushButton(self.imageFrame)
@@ -67,7 +64,6 @@ class TranslatorGUI (QWidget):
     def take_picture(self):
         imageFileName = self.imageCaptureDelegate.capture_image()
         self._load_image(imageFileName)
-        # self.frameBtn.setGeometry(self.imageFrame.size().width()/2-50, self.imageFrame.height()/2-100, 100, 200)
 
         pass
 
@@ -84,6 +80,5 @@ class TranslatorGUI (QWidget):
         pass
 
     def _load_image(self, fileName):
-        self.imageDisplay.load(fileName)
-        self.imageLabel.setPixmap(self.imageDisplay.scaledToHeight(self.height()))
+        self.imageFrame.setStyleSheet('border-image: url("%s")' % fileName)
         pass
