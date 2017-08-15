@@ -11,11 +11,11 @@ class ImageCapture:
         frameIsAvailable, frame = vCapture.read()
         key = cv2.waitKey(1)
         while frameIsAvailable and key != 27:
-            cv2.imshow("Image Feed", frame)
+            cv2.imshow("Press esc to take picture", frame)
             frameIsAvailable, frame = vCapture.read()
             key = cv2.waitKey(1)
         vCapture.release()
-        cv2.destroyWindow("Image Feed")
+        cv2.destroyWindow("Press esc to take picture")
         imgFileName = "savedImage%s.jpg" % (ImageCapture.index)
         print(imgFileName)
         ImageCapture.index += 1
