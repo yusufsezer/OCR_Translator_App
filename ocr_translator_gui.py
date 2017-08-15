@@ -1,5 +1,5 @@
 # GUI for OCR Text Translator App
-from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QHBoxLayout, QLabel, QFileDialog, QFrame
+from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QHBoxLayout, QLabel, QFileDialog, QFrame, QSizePolicy
 from PyQt5.QtGui import QPixmap, QImage
 from image_capture import ImageCapture
 from image_frame import ImageFrame
@@ -46,6 +46,7 @@ class TranslatorGUI (QWidget):
 
         self.image = QImage()
         self.imageFrame = ImageFrame()
+        self.imageFrame.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
         self._load_image("default.jpg")
         # self.frameBtn = QPushButton(self.imageFrame)
         # self.frameBtn.setText("EXAMPLE")
@@ -64,19 +65,13 @@ class TranslatorGUI (QWidget):
         imageFileName = self.imageCaptureDelegate.capture_image()
         self._load_image(imageFileName)
 
-        pass
-
     def select_existing_image(self):
         fileDialog = QFileDialog()
         imageFileName = fileDialog.getOpenFileName()
-        print(imageFileName)
-        self._load_image(imageFileName)
-        print("Select an Existing Image")
-        pass
+        self._load_image(imageFileName[0])
 
     def translate_image_text(self):
         print("Translate Text in Image")
-        pass
 
     def _load_image(self, fileName):
         self.image.load(fileName)
@@ -85,4 +80,3 @@ class TranslatorGUI (QWidget):
         self.imageFrame.setStyleSheet('border-image: url("%s")' % fileName)
         self.imageFrame.setAspectRatio(imgAspectRatio)
         self.imageFrame.setWidth(imgWidth)
-        pass
