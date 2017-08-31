@@ -14,7 +14,6 @@ class ImageFrame(QFrame):
 
     def sizeHint(self):
         return QSize(self.width, self.heightForWidth(self.width))
-        #return QSize(900, 900)
 
     def heightForWidth(self, width):
         return width / self.aspectRatio
@@ -28,3 +27,7 @@ class ImageFrame(QFrame):
             self.width = screenWidth / 3
         else:
             self.width = width
+
+    # def resizeEvent(self, event):
+    #     print(event.oldSize())
+    #     print(self.size())

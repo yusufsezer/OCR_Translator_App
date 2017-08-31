@@ -1,8 +1,10 @@
 # GUI for OCR Text Translator App
 from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QHBoxLayout, QLabel, QFileDialog, QFrame, QSizePolicy
 from PyQt5.QtGui import QPixmap, QImage
+from PyQt5.QtCore import QByteArray, QBuffer
 from image_capture import ImageCapture
 from image_frame import ImageFrame
+from image_translator import ImageTranslator
 
 class TranslatorGUI (QWidget):
 
@@ -10,6 +12,7 @@ class TranslatorGUI (QWidget):
         super().__init__()
         self.init_ui()
         self.imageCaptureDelegate = ImageCapture() # Webcam Image Capture Delegate
+        self.translateDelegate = ImageTranslator() # OCR Text-in-Image Translator
 
     def init_ui(self):
 
@@ -39,19 +42,15 @@ class TranslatorGUI (QWidget):
         self.leftVLayout.addWidget(self.slctImgBtn)
         self.leftVLayout.addWidget(self.translateImgBtn)
 
-        # Create label and fill with default image
-        # self.imageDisplay = QPixmap("default.jpg")
-        # self.imageLabel = QLabel()
-        # self.imageLabel.setPixmap(self.imageDisplay.scaledToHeight(self.height()))
-
+        # Create QImage and ImageFrame to display image
         self.image = QImage()
         self.imageFrame = ImageFrame()
         self.imageFrame.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
-        self._load_image("default.jpg")
         # self.frameBtn = QPushButton(self.imageFrame)
         # self.frameBtn.setText("EXAMPLE")
-        # self.frameBtn.setStyleSheet('background-color: blue')
-        # self.frameBtn.setGeometry(self.imageFrame.size().width()/2, self.imageFrame.height()/2, 100, 200)
+        # self.frameBtn.setGeometry((self.imageFrame.width / 2) - 250,
+        #                           (self.imageFrame.width / self.imageFrame.aspectRatio / 2) - 250, 500, 500)
+        self._load_image("default.jpg")
 
         # Add appropriate widgets to right vertical layout
         self.rightVLayout.addWidget(self.imageFrame)
@@ -71,7 +70,7 @@ class TranslatorGUI (QWidget):
         self._load_image(imageFileName[0])
 
     def translate_image_text(self):
-        print("Translate Text in Image")
+        self.translateDelegate.translate_image_text(self.image)
 
     def _load_image(self, fileName):
         self.image.load(fileName)
@@ -80,3 +79,5 @@ class TranslatorGUI (QWidget):
         self.imageFrame.setStyleSheet('border-image: url("%s")' % fileName)
         self.imageFrame.setAspectRatio(imgAspectRatio)
         self.imageFrame.setWidth(imgWidth)
+        # self.frameBtn.setGeometry((self.imageFrame.width/2)-250,(self.imageFrame.width/self.imageFrame.aspectRatio/2)-250, 500, 500)
+        # self.frameBtn.setStyleSheet('border-image: null; background-color: transparent')
