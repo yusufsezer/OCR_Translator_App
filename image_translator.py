@@ -18,6 +18,13 @@ class ImageTranslator:
         self.__target_language = target_language
 
     def set_target_language(self, target_language):
+        """Set the target language for translation requests sent to Google's Cloud Translate API
+
+        :type target_language: str
+        :param two letter language code for the target language
+
+        :rtype None
+        """
         self.__target_language = target_language
 
     def translate_image_text(self, image_data):
