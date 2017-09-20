@@ -7,7 +7,7 @@ from word_polygon import WordPolygon
 class ImageView(QGraphicsView):
     """Subclassed QGraphicsView designed to display translated words over images
 
-    :type default_image: PyQt5.QtGui.QImage
+    :type default_image: QImage
     :param default_image: image to display when app starts. If not passed, no image is displayed when app starts.
     """
 
@@ -27,7 +27,7 @@ class ImageView(QGraphicsView):
     def set_image(self, image):
         """Sets the background image for self
 
-        :type image: PyQt5.QtGui.QImage
+        :type image: QImage
         :param image: image to set as background of self
 
         :rtype None
@@ -70,7 +70,7 @@ class ImageView(QGraphicsView):
     def wheelEvent(self, event):
         """Overriden method that prevents scrolling via mouse wheel/touch pad gestures.
 
-        :type event: PyQt5.QtGui.QWheelEvent
+        :type event: QWheelEvent
         :param event: event to handle
 
         :rtype None
