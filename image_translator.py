@@ -1,6 +1,7 @@
+import collections
 from google.cloud import vision
 from google.cloud import translate
-import collections
+
 WordBox = collections.namedtuple('WordBox', ['word', 'geometry'])
 
 
@@ -11,6 +12,7 @@ class ImageTranslator:
     :param target_language: the target language to which text will be translated. If not passed, defaults to 'en',
                             resulting in translations into English.
     """
+
     __vision_client = vision.Client()
     __translate_client = translate.Client()
 
@@ -30,12 +32,12 @@ class ImageTranslator:
     def translate_image_text(self, image_data):
         """Detect and translate each word in the image, and construct a list of WordBox namedtuples.
 
-        :type image_data: object
+        :type image_data: bytes
         :param image_data: pointer to the image data to extract/translate text from
 
         :rtype: list
         :returns: a list of WordBox namedtuples. Each WordBox encapsulates a word's translation and the vertices of its
-                  bounding box
+                  bounding polygon
         """
 
         img_to_translate = ImageTranslator.__vision_client.image(content=image_data)
