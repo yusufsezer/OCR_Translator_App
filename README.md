@@ -5,4 +5,4 @@ This app translates text contained in images into different languages, and overl
 
 # Using the App
 
-![Alt text](images/launch.png?raw=true "Application immediately after launch.")
+![Alt text](images/launch.PNG?raw=true "Application immediately after launch.")
