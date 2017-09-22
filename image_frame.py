@@ -5,6 +5,7 @@
 from PyQt5.QtWidgets import QFrame, QDesktopWidget
 from PyQt5.QtCore import QSize
 
+
 class ImageFrame(QFrame):
 
     def __init__(self, aspectRatio = .66, width = 600):
