@@ -5,7 +5,7 @@ This app translates text contained in images into different languages, and overl
 
 # Using the App
 
-Note, you must have a Google Cloud Developer account and project configured on your machine with Google Cloud Translate and Vision APIs enabled.
+Note, you must have a Google Cloud Developer account and project configured on your machine with Google Cloud Translate and Vision APIs enabled. This is because I have NOT provided the API keys associated with my account/project configuration to prevent charges from being billed to my account. 
 
 Launch the application by running app_driver.py.
 
