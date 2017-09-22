@@ -5,4 +5,23 @@ This app translates text contained in images into different languages, and overl
 
 # Using the App
 
+Note, you must have a Google Cloud Developer account and project configured on your machine with Google Cloud Translate and Vision APIs enabled.
+
+Launch the application by running app_driver.py.
+
 ![Alt text](images/launch.PNG?raw=true "Application immediately after launch.")
+
+
+Either select an existing image or take a new image using the buttons.
+
+![Alt text](images/loadimage.PNG?raw=true "Application immediately after launch.")
+
+
+Select a language using the combo box, and click the "Translate Text in Image" button.
+
+![Alt text](images/runtranslation.PNG?raw=true "Application immediately after launch.")
+
+
+Simply hover over each word with your cursor to reveal the translation!
+
+![Alt text](images/hover.png?raw=true "Application immediately after launch.")
